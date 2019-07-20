@@ -2,17 +2,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pokemon_explorer/models/pokemon.dart';
-import 'package:pokemon_explorer/screens/pokemon-details.dart';
 import 'package:pokemon_explorer/widgets/search-input.dart';
+import 'package:pokemon_explorer/widgets/search-result.dart';
 
 class SearchPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _SearchPage();
+    return _SearchPageState();
   }
 }
 
-class _SearchPage extends State<SearchPage> {
+class _SearchPageState extends State<SearchPage> {
   Pokemon _pokemon;
 
   @override
@@ -23,30 +23,9 @@ class _SearchPage extends State<SearchPage> {
           children: <Widget>[
             Padding(
                 padding: const EdgeInsets.only(top: 40.0),
-                child: SearchInput(_searchPokemon)),
+                child: SearchInput(onFieldSubmitted: _searchPokemon)),
             Container(
-              child: _pokemon != null
-                  ? ListTile(
-                      leading: Container(
-                          width: 50,
-                          child: Hero(
-                            tag: "pokemon_hero${_pokemon.id}",
-                            child: Image(
-                              image: NetworkImage(
-                                  _pokemon.sprites["front_default"]),
-                            ),
-                          )),
-                      title: Text(_pokemon.name.substring(0, 1).toUpperCase() +
-                          _pokemon.name.substring(1)),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    PokemonDetails(_pokemon, _pokemon.id)));
-                      },
-                    )
-                  : null,
+              child: _pokemon != null ? SearchResult(_pokemon) : null,
             )
           ],
         ),

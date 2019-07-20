@@ -4,18 +4,24 @@ import 'package:flutter/services.dart';
 class SearchInput extends StatefulWidget {
   final _controller = TextEditingController();
   final _searchInputFocus = FocusNode();
+  final Function onFieldSubmitted;
 
-  final Function onSubmit;
-
-  SearchInput(this.onSubmit);
+  SearchInput({this.onFieldSubmitted});
 
   @override
   State<StatefulWidget> createState() {
-    return _SearchInput();
+    return _SearchInputState();
   }
 }
 
-class _SearchInput extends State<SearchInput> {
+class _SearchInputState extends State<SearchInput> {
+  @override
+  void dispose() {
+    widget._controller.dispose();
+    widget._searchInputFocus.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +33,7 @@ class _SearchInput extends State<SearchInput> {
           onFieldSubmitted: (text) {
             if (text.isNotEmpty) {
               SystemChannels.textInput.invokeMethod('TextInput.hide');
-              widget?.onSubmit(text);
+              widget?.onFieldSubmitted(text);
             }
           },
           focusNode: widget._searchInputFocus,

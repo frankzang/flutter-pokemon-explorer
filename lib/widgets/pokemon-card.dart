@@ -6,15 +6,17 @@ import 'package:pokemon_explorer/screens/pokemon-details.dart';
 
 class PokemonCard extends StatefulWidget {
   final int _pokemonNumber;
+
   PokemonCard(this._pokemonNumber);
 
   @override
   State<StatefulWidget> createState() {
-    return _PokemonCard();
+    return _PokemonCardState();
   }
 }
 
-class _PokemonCard extends State<PokemonCard> with TickerProviderStateMixin {
+class _PokemonCardState extends State<PokemonCard>
+    with TickerProviderStateMixin {
   AnimationController _controller;
   Animation _animation;
   Pokemon _pokemon;
