@@ -24,33 +24,47 @@ class _SearchInputState extends State<SearchInput> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(color: Colors.black45, width: 2.0))),
-        child: TextFormField(
-          autofocus: true,
-          onFieldSubmitted: (text) {
-            if (text.isNotEmpty) {
-              SystemChannels.textInput.invokeMethod('TextInput.hide');
-              widget?.onFieldSubmitted(text);
-            }
-          },
-          focusNode: widget._searchInputFocus,
-          style: TextStyle(fontSize: 24),
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            icon: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.black54,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+          height: 60,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 10,
+                    color: Colors.black12,
+                    spreadRadius: 2,
+                    offset: Offset(0, 5))
+              ]),
+          child: TextFormField(
+            autofocus: true,
+            onFieldSubmitted: (text) {
+              if (text.isNotEmpty) {
+                SystemChannels.textInput.invokeMethod('TextInput.hide');
+                widget?.onFieldSubmitted(text);
+              }
+            },
+            focusNode: widget._searchInputFocus,
+            style: TextStyle(fontSize: 24),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: "Type pokemon name here",
+              hintStyle: TextStyle(color: Colors.black38),
+              icon: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.black54,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
             ),
-          ),
-          controller: widget._controller,
-        ));
+            controller: widget._controller,
+          )),
+    );
   }
 }
