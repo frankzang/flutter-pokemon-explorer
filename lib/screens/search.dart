@@ -21,10 +21,26 @@ class _SearchPageState extends State<SearchPage> {
       body: Container(
         child: Column(
           children: <Widget>[
-            Padding(
-                padding: const EdgeInsets.only(top: 40.0),
-                child: SearchInput(onFieldSubmitted: _searchPokemon)),
             Container(
+              padding: EdgeInsets.only(
+                left: 10,
+                right: 10,
+                top: 70,
+              ),
+              child: Text(
+                "Search by pokemon name or number",
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 32,
+                    letterSpacing: 1.2,
+                    fontWeight: FontWeight.w400),
+              ),
+            ),
+            Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: SearchInput(onFieldSubmitted: _searchPokemon)),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
               child: _pokemon != null ? SearchResult(_pokemon) : null,
             )
           ],

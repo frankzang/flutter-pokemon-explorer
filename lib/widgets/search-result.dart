@@ -18,8 +18,9 @@ class _SearchResultState extends State<SearchResult> {
     return Card(
       elevation: 0,
       color: Colors.grey[200],
-      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       clipBehavior: Clip.hardEdge,
       child: InkWell(
         child: Padding(

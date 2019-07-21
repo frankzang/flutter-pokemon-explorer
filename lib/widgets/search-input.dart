@@ -51,7 +51,7 @@ class _SearchInputState extends State<SearchInput> {
             style: TextStyle(fontSize: 24),
             decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: "Type pokemon name here",
+              hintText: "ex. Lapras or 131",
               hintStyle: TextStyle(color: Colors.black38),
               icon: IconButton(
                 icon: Icon(
