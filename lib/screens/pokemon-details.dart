@@ -31,14 +31,14 @@ class _PokemonDetailsState extends State<PokemonDetails> {
               fontWeight: FontWeight.w400),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           Hero(
               tag: "pokemon_hero${widget._pokemonNumber}",
               child: _pokemonSprite(
                   name: "Front",
                   image: widget._pokemon.sprites["front_default"])),
-          Container(height: 200, child: StatsChart(widget._pokemon))
+          Container(height: 250, child: StatsChart(widget._pokemon))
         ],
       ),
     );

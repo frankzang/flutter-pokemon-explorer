@@ -34,27 +34,15 @@ class HorizontalBarLabelChart extends StatelessWidget {
     );
   }
 
-  // [BarLabelDecorator] will automatically position the label
-  // inside the bar if the label will fit. If the label will not fit and the
-  // area outside of the bar is larger than the bar, it will draw outside of the
-  // bar. Labels can always display inside or outside using [LabelPosition].
-  //
-  // Text style for inside / outside can be controlled independently by setting
-  // [insideLabelStyleSpec] and [outsideLabelStyleSpec].
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
       seriesList,
       animate: animate,
       vertical: false,
-
-      // Set a bar label decorator.
-      // Example configuring different styles for inside/outside:
-      //       barRendererDecorator: new charts.BarLabelDecorator(
-      //          insideLabelStyleSpec: new charts.TextStyleSpec(...),
-      //          outsideLabelStyleSpec: new charts.TextStyleSpec(...)),
+      primaryMeasureAxis:
+          charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
       barRendererDecorator: new charts.BarLabelDecorator<String>(),
-      // Hide domain axis.
       domainAxis: new charts.OrdinalAxisSpec(
         renderSpec: new charts.NoneRenderSpec(),
         showAxisLine: false,
@@ -62,27 +50,6 @@ class HorizontalBarLabelChart extends StatelessWidget {
     );
   }
 
-  // static List<charts.Series<Ordinalstatus, String>> _createSampleData() {
-  //   final data = [
-  //     new Ordinalstatus('2014', 5),
-  //     new Ordinalstatus('2015', 25),
-  //     new Ordinalstatus('2016', 100),
-  //     new Ordinalstatus('2017', 75),
-  //   ];
-
-  //   return [
-  //     new charts.Series<Ordinalstatus, String>(
-  //         id: 'status',
-  //         domainFn: (Ordinalstatus status, _) => status.year,
-  //         measureFn: (Ordinalstatus status, _) => status.status,
-  //         data: data,
-  //         // Set a label accessor to control the text of the bar label.
-  //         labelAccessorFn: (Ordinalstatus status, _) =>
-  //             '${status.year}: \$${status.status.toString()}')
-  //   ];
-  // }
-
-  /// Create one series with sample hard coded data.
   static List<charts.Series<PokemonStatus, String>> _createPokemonData(
       Pokemon pokemon) {
     final data = pokemon.stats
@@ -98,6 +65,8 @@ class HorizontalBarLabelChart extends StatelessWidget {
           id: 'Status',
           domainFn: (PokemonStatus status, _) => status.name,
           measureFn: (PokemonStatus status, _) => status.value,
+          colorFn: (PokemonStatus status, _) =>
+              charts.Color.fromHex(code: "#e57373"),
           data: data,
           // Set a label accessor to control the text of the bar label.
           labelAccessorFn: (PokemonStatus status, _) =>
@@ -106,7 +75,6 @@ class HorizontalBarLabelChart extends StatelessWidget {
   }
 }
 
-/// Sample ordinal data type.
 class PokemonStatus {
   final String name;
   final int value;
