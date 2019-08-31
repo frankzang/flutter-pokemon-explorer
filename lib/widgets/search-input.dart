@@ -39,43 +39,47 @@ class _SearchInputState extends State<SearchInput> {
                     spreadRadius: 2,
                     offset: Offset(0, 5))
               ]),
-          child: TextFormField(
-            autofocus: true,
-            onFieldSubmitted: (text) {
-              if (text.isNotEmpty) {
-                SystemChannels.textInput.invokeMethod('TextInput.hide');
-                widget?.onFieldSubmitted(text);
-              }
-            },
-            focusNode: widget._searchInputFocus,
-            style: TextStyle(fontSize: 24),
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "ex. Lapras or 131",
-                hintStyle: TextStyle(color: Colors.black38),
-                icon: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.black54,
+          child: Row(
+            children: <Widget>[
+              IconButton(
+                icon: Icon(Icons.arrow_back),
+                color: Colors.black54,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              Expanded(
+                child: TextFormField(
+                  autofocus: true,
+                  onFieldSubmitted: (text) {
+                    onSubmit();
+                  },
+                  focusNode: widget._searchInputFocus,
+                  style: TextStyle(fontSize: 24),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "ex. Lapras or 131",
+                    hintStyle: TextStyle(color: Colors.black38),
                   ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
+                  controller: widget._controller,
                 ),
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    final text = widget._controller.text;
-                    if (text.isNotEmpty) {
-                      SystemChannels.textInput.invokeMethod('TextInput.hide');
-                      widget?.onFieldSubmitted(text);
-                      widget._controller.clear();
-                    }
-                  },
-                  icon: Icon(Icons.search),
-                  color: Colors.black54,
-                )),
-            controller: widget._controller,
+              ),
+              IconButton(
+                onPressed: onSubmit,
+                icon: Icon(Icons.search),
+                color: Colors.black54,
+              ),
+            ],
           )),
     );
+  }
+
+  void onSubmit() {
+    final text = widget._controller.text;
+    if (text.isNotEmpty) {
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
+      widget?.onFieldSubmitted(text);
+      widget._controller.clear();
+    }
   }
 }
