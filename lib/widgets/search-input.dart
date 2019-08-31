@@ -64,10 +64,12 @@ class _SearchInputState extends State<SearchInput> {
                 ),
                 suffixIcon: IconButton(
                   onPressed: () {
-                    SystemChannels.textInput.invokeMethod('TextInput.hide');
                     final text = widget._controller.text;
-                    widget?.onFieldSubmitted(text);
-                    widget._controller.clear();
+                    if (text.isNotEmpty) {
+                      SystemChannels.textInput.invokeMethod('TextInput.hide');
+                      widget?.onFieldSubmitted(text);
+                      widget._controller.clear();
+                    }
                   },
                   icon: Icon(Icons.search),
                   color: Colors.black54,
