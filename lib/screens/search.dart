@@ -14,6 +14,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   Pokemon _pokemon;
+  bool _isSearching = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +26,14 @@ class _SearchPageState extends State<SearchPage> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 5, vertical: 40),
                 child: SearchInput(onFieldSubmitted: _searchPokemon)),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
-              child: _pokemon != null ? SearchResult(_pokemon) : null,
-            )
+            !_isSearching && _pokemon != null
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: _pokemon != null ? SearchResult(_pokemon) : null,
+                  )
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: CircularProgressIndicator())
           ],
         ),
       ),
@@ -38,6 +43,10 @@ class _SearchPageState extends State<SearchPage> {
   _searchPokemon(String text) async {
     if (text == null) return;
 
+    setState(() {
+      _isSearching = true;
+    });
+
     var path = "https://pokeapi.co/api/v2/pokemon/${text.toLowerCase()}";
 
     try {
@@ -45,6 +54,7 @@ class _SearchPageState extends State<SearchPage> {
       if (response.statusCode == 200 && mounted) {
         setState(() {
           _pokemon = Pokemon.fromJson(json.decode(response.body));
+          _isSearching = false;
         });
       }
     } catch (e) {}

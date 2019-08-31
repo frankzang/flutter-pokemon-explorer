@@ -69,9 +69,9 @@ class _PokemonCardState extends State<PokemonCard>
                                   height: 70,
                                   imageUrl: _pokemon.sprites["front_default"],
                                   placeholder: (context, url) =>
-                                      new CircularProgressIndicator(),
+                                      CircularProgressIndicator(),
                                   errorWidget: (context, url, error) =>
-                                      new Icon(Icons.error),
+                                      Icon(Icons.error),
                                 ),
                               ),
                             )),
