@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokemon_explorer/models/pokemon.dart';
 import 'package:pokemon_explorer/widgets/stats-chart.dart';
@@ -19,22 +20,35 @@ class _PokemonDetailsState extends State<PokemonDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black54),
-        title: Text(
-          widget._pokemon.name.substring(0, 1).toUpperCase() +
-              widget._pokemon.name.substring(1),
-          style: TextStyle(
-              color: Colors.black54,
-              fontSize: 32,
-              letterSpacing: 1.2,
-              fontWeight: FontWeight.w400),
-        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.black87),
       ),
-      body: ListView(
+      body: Column(
         children: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
+            child: Text(
+              widget._pokemon.name.substring(0, 1).toUpperCase() +
+                  widget._pokemon.name.substring(1),
+              style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 32,
+                  letterSpacing: 1.2,
+                  fontWeight: FontWeight.w400),
+            ),
+          ),
           Hero(
               tag: "pokemon_hero${widget._pokemonNumber}",
+              flightShuttleBuilder: (
+                BuildContext flightContext,
+                Animation<double> animation,
+                HeroFlightDirection flightDirection,
+                BuildContext fromHeroContext,
+                BuildContext toHeroContext,
+              ) {
+                return fromHeroContext.widget;
+              },
               child: _pokemonSprite(
                   name: "Front",
                   image: widget._pokemon.sprites["front_default"])),
@@ -51,10 +65,15 @@ class _PokemonDetailsState extends State<PokemonDetails> {
         height: 130,
         child: Column(
           children: <Widget>[
-            Image(
-              image: NetworkImage(image),
-              fit: BoxFit.contain,
+            SizedBox(
               height: 80,
+              width: 80,
+              child: CachedNetworkImage(
+                imageUrl: image,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => new CircularProgressIndicator(),
+                errorWidget: (context, url, error) => new Icon(Icons.error),
+              ),
             ),
           ],
         ),

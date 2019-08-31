@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -57,14 +58,23 @@ class _PokemonCardState extends State<PokemonCard>
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Hero(
-                          tag: "pokemon_hero${widget._pokemonNumber}",
-                          child: Image(
-                            image: NetworkImage(
-                              _pokemon.sprites["front_default"],
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                            tag: "pokemon_hero${widget._pokemonNumber}",
+                            child: SingleChildScrollView(
+                              padding: EdgeInsets.all(8),
+                              child: SizedBox(
+                                height: 80,
+                                width: 80,
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  height: 70,
+                                  imageUrl: _pokemon.sprites["front_default"],
+                                  placeholder: (context, url) =>
+                                      new CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      new Icon(Icons.error),
+                                ),
+                              ),
+                            )),
                         Padding(
                           padding: EdgeInsets.only(bottom: 5),
                           child: Text(
