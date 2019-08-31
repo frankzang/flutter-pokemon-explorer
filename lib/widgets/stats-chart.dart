@@ -70,7 +70,7 @@ class HorizontalBarLabelChart extends StatelessWidget {
           data: data,
           // Set a label accessor to control the text of the bar label.
           labelAccessorFn: (PokemonStatus status, _) =>
-              '${status.name}: ${status.value.toString()}')
+              '${status.name.toUpperCase()}   •   ${status.value.toString()}')
     ];
   }
 }
