@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_explorer/widgets/pokemon-card.dart';
+import 'package:pokemon_explorer/widgets/pokemon-count.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -33,16 +34,22 @@ class _HomePageState extends State<HomePage> {
                   SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {
                       return index == 0
-                          ? Container(
+                          ? Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 70),
-                              child: Text(
-                                "Pokemon Explorer",
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 32,
-                                    letterSpacing: 1.2,
-                                    fontWeight: FontWeight.w400),
+                                  vertical: 70, horizontal: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Pokemon Explorer",
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 32,
+                                        letterSpacing: 1.2,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  TotalPokemon()
+                                ],
                               ),
                             )
                           : null;

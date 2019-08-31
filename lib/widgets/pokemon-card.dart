@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:pokemon_explorer/config/api.dart';
 import 'package:pokemon_explorer/models/pokemon.dart';
 import 'package:pokemon_explorer/screens/pokemon-details.dart';
 
@@ -115,7 +116,7 @@ class _PokemonCardState extends State<PokemonCard>
       return;
     }
 
-    var path = "https://pokeapi.co/api/v2/pokemon/${widget._pokemonNumber}";
+    var path = "$API_URL${widget._pokemonNumber}";
 
     try {
       var response = await http.get(path);

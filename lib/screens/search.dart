@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pokemon_explorer/config/api.dart';
 import 'package:pokemon_explorer/models/pokemon.dart';
 import 'package:pokemon_explorer/widgets/search-input.dart';
 import 'package:pokemon_explorer/widgets/search-result.dart';
@@ -52,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
       _notFound = false;
     });
 
-    var path = "https://pokeapi.co/api/v2/pokemon/${text.toLowerCase()}";
+    var path = "$API_URL${text.toLowerCase()}";
 
     try {
       var response = await http.get(path);
@@ -69,6 +70,8 @@ class _SearchPageState extends State<SearchPage> {
           _isSearching = false;
         });
       }
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
   }
 }
