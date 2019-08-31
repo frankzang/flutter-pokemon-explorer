@@ -47,14 +47,14 @@ class _SearchResultState extends State<SearchResult> {
                                 height: 80,
                                 width: 80,
                                 child: CachedNetworkImage(
-                                  fit: BoxFit.contain,
+                                  fit: BoxFit.cover,
                                   height: 70,
                                   imageUrl:
                                       widget._pokemon.sprites["front_default"],
                                   placeholder: (context, url) =>
-                                      new CircularProgressIndicator(),
+                                      CircularProgressIndicator(),
                                   errorWidget: (context, url, error) =>
-                                      new Icon(Icons.error),
+                                      Icon(Icons.error),
                                 ),
                               ),
                             ),
