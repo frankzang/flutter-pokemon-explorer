@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokemon_explorer/models/pokemon.dart';
 import 'package:pokemon_explorer/screens/pokemon-details.dart';
@@ -42,10 +43,14 @@ class _SearchResultState extends State<SearchResult> {
                             padding: const EdgeInsets.only(right: 10.0),
                             child: Hero(
                               tag: "pokemon_hero${widget._pokemon.id}",
-                              child: Image(
+                              child: CachedNetworkImage(
                                 width: 70,
-                                image: NetworkImage(
-                                    widget._pokemon.sprites["front_default"]),
+                                imageUrl:
+                                    widget._pokemon.sprites["front_default"],
+                                placeholder: (context, url) =>
+                                    new CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    new Icon(Icons.error),
                               ),
                             ),
                           ),
