@@ -50,19 +50,28 @@ class _SearchInputState extends State<SearchInput> {
             focusNode: widget._searchInputFocus,
             style: TextStyle(fontSize: 24),
             decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: "ex. Lapras or 131",
-              hintStyle: TextStyle(color: Colors.black38),
-              icon: IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: Colors.black54,
+                border: InputBorder.none,
+                hintText: "ex. Lapras or 131",
+                hintStyle: TextStyle(color: Colors.black38),
+                icon: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.black54,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ),
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    SystemChannels.textInput.invokeMethod('TextInput.hide');
+                    final text = widget._controller.text;
+                    widget?.onFieldSubmitted(text);
+                    widget._controller.clear();
+                  },
+                  icon: Icon(Icons.search),
+                  color: Colors.black54,
+                )),
             controller: widget._controller,
           )),
     );
