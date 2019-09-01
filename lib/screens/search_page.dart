@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pokemon_explorer/config/api.dart';
-import 'package:pokemon_explorer/models/pokemon_model_dart';
+import 'package:pokemon_explorer/models/pokemon_model.dart';
 import 'package:pokemon_explorer/widgets/search_input.dart';
 import 'package:pokemon_explorer/widgets/search_result.dart';
 
