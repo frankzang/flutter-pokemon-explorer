@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:pokemon_explorer/models/pokemon.dart';
+import 'package:pokemon_explorer/models/pokemon.model.dart';
 import 'package:pokemon_explorer/screens/pokemon-details.dart';
 
 class SearchResult extends StatefulWidget {
-  final Pokemon _pokemon;
+  final PokemonModel _pokemon;
   SearchResult(this._pokemon);
 
   @override

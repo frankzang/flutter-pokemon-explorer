@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pokemon_explorer/config/api.dart';
-import 'package:pokemon_explorer/models/pokemon.dart';
+import 'package:pokemon_explorer/models/pokemon.model.dart';
 import 'package:pokemon_explorer/widgets/search-input.dart';
 import 'package:pokemon_explorer/widgets/search-result.dart';
 
@@ -14,7 +14,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  Pokemon _pokemon;
+  PokemonModel _pokemon;
   bool _isSearching = false;
   bool _notFound = false;
 
@@ -59,7 +59,7 @@ class _SearchPageState extends State<SearchPage> {
       var response = await http.get(path);
       if (response.statusCode == 200 && mounted) {
         setState(() {
-          _pokemon = Pokemon.fromJson(json.decode(response.body));
+          _pokemon = PokemonModel.fromJson(json.decode(response.body));
           _isSearching = false;
         });
       }

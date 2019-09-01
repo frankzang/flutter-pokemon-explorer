@@ -1,7 +1,7 @@
 /// Horizontal bar chart with bar label renderer example and hidden domain axis.
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
-import 'package:pokemon_explorer/models/pokemon.dart';
+import 'package:pokemon_explorer/models/pokemon.model.dart';
 
 class StatsChart extends StatefulWidget {
   final _pokemon;
@@ -26,7 +26,7 @@ class HorizontalBarLabelChart extends StatelessWidget {
   HorizontalBarLabelChart(this.seriesList, {this.animate});
 
   /// Creates a [BarChart] with sample data and no transition.
-  factory HorizontalBarLabelChart.withSampleData(Pokemon pokemon) {
+  factory HorizontalBarLabelChart.withSampleData(PokemonModel pokemon) {
     return new HorizontalBarLabelChart(
       _createPokemonData(pokemon),
       // Disable animations for image tests.
@@ -51,7 +51,7 @@ class HorizontalBarLabelChart extends StatelessWidget {
   }
 
   static List<charts.Series<PokemonStatus, String>> _createPokemonData(
-      Pokemon pokemon) {
+      PokemonModel pokemon) {
     final data = pokemon.stats
         .map((stat) {
           return PokemonStatus(stat.stat["name"], stat.baseStat);

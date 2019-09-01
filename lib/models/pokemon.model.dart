@@ -1,17 +1,17 @@
-class Pokemon {
+class PokemonModel {
   String name;
   int id;
   Map sprites;
   List<Stats> stats;
 
-  Pokemon({this.name, this.id, this.sprites, this.stats});
+  PokemonModel({this.name, this.id, this.sprites, this.stats});
 
-  factory Pokemon.fromJson(Map<String, dynamic> json) {
+  factory PokemonModel.fromJson(Map<String, dynamic> json) {
     List<Stats> stats = (json["stats"] as List).map((stat) {
       return Stats(stat["base_stat"], stat["stat"]);
     }).toList();
 
-    return Pokemon(
+    return PokemonModel(
         name: json["name"],
         id: json["id"],
         sprites: json["sprites"],

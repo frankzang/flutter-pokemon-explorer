@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:pokemon_explorer/config/api.dart';
-import 'package:pokemon_explorer/models/pokemon.dart';
+import 'package:pokemon_explorer/models/pokemon.model.dart';
 import 'package:pokemon_explorer/screens/pokemon-details.dart';
 
 class PokemonCard extends StatefulWidget {
@@ -21,7 +21,7 @@ class _PokemonCardState extends State<PokemonCard>
     with TickerProviderStateMixin {
   AnimationController _controller;
   Animation _animation;
-  Pokemon _pokemon;
+  PokemonModel _pokemon;
 
   @override
   void initState() {
@@ -122,7 +122,7 @@ class _PokemonCardState extends State<PokemonCard>
       var response = await http.get(path);
       if (response.statusCode == 200 && mounted) {
         setState(() {
-          _pokemon = Pokemon.fromJson(json.decode(response.body));
+          _pokemon = PokemonModel.fromJson(json.decode(response.body));
         });
         _controller.forward();
       }
