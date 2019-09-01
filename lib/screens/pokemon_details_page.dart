@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:pokemon_explorer/models/pokemon.model.dart';
+import 'package:pokemon_explorer/models/pokemon_model_dart';
 import 'package:pokemon_explorer/utils/capitalize.dart';
-import 'package:pokemon_explorer/widgets/stats-chart.dart';
+import 'package:pokemon_explorer/widgets/stats_chart.dart';
 
 class PokemonDetails extends StatefulWidget {
   final PokemonModel _pokemon;

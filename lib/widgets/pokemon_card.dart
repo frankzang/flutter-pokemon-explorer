@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:pokemon_explorer/config/api.dart';
-import 'package:pokemon_explorer/models/pokemon.model.dart';
-import 'package:pokemon_explorer/screens/pokemon-details.dart';
+import 'package:pokemon_explorer/models/pokemon_model_dart';
+import 'package:pokemon_explorer/screens/pokemon_details_page.dart';
 
 class PokemonCard extends StatefulWidget {
   final int _pokemonNumber;
@@ -116,7 +116,7 @@ class _PokemonCardState extends State<PokemonCard>
       return;
     }
 
-    var path = "$API_URL${widget._pokemonNumber}";
+    var path = "$apiUrl${widget._pokemonNumber}";
 
     try {
       var response = await http.get(path);

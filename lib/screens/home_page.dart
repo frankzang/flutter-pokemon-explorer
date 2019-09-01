@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_explorer/widgets/pokemon-card.dart';
-import 'package:pokemon_explorer/widgets/pokemon-count.dart';
+import 'package:pokemon_explorer/widgets/pokemon_card.dart';
+import 'package:pokemon_explorer/widgets/pokemon_count.dart';
 
 class HomePage extends StatefulWidget {
   @override

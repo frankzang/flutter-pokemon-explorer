@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pokemon_explorer/config/api.dart';
-import 'package:pokemon_explorer/models/pokemon.model.dart';
-import 'package:pokemon_explorer/widgets/search-input.dart';
-import 'package:pokemon_explorer/widgets/search-result.dart';
+import 'package:pokemon_explorer/models/pokemon_model_dart';
+import 'package:pokemon_explorer/widgets/search_input.dart';
+import 'package:pokemon_explorer/widgets/search_result.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -53,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
       _notFound = false;
     });
 
-    var path = "$API_URL${text.toLowerCase()}";
+    var path = "$apiUrl${text.toLowerCase()}";
 
     try {
       var response = await http.get(path);

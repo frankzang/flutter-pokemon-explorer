@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_explorer/screens/home.dart';
-import 'package:pokemon_explorer/screens/search.dart';
+import 'package:pokemon_explorer/screens/home_page.dart';
+import 'package:pokemon_explorer/screens/search_page.dart';
 
 void main() => runApp(App());
 

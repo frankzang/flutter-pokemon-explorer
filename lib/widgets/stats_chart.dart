@@ -1,7 +1,7 @@
 /// Horizontal bar chart with bar label renderer example and hidden domain axis.
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
-import 'package:pokemon_explorer/models/pokemon.model.dart';
+import 'package:pokemon_explorer/models/pokemon_model_dart';
 
 class StatsChart extends StatefulWidget {
   final _pokemon;

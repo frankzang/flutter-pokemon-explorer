@@ -27,7 +27,7 @@ class _TotalPokemonState extends State<TotalPokemon> {
 
   getPokemonCount() async {
     try {
-      var response = await http.get(API_URL);
+      var response = await http.get(apiUrl);
       if (response.statusCode == 200) {
         if (!mounted) return;
 
