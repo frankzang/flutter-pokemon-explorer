@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_explorer/screens/home_page.dart';
+import 'package:pokemon_explorer/screens/dashboard.dart';
 import 'package:pokemon_explorer/screens/search_page.dart';
 
 void main() => runApp(App());
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
           primaryColor: Colors.redAccent,
           cursorColor: Colors.redAccent,
           fontFamily: "Yanone"),
-      home: HomePage(),
+      home: Dashboard(),
       routes: {
         "search": (context) => SearchPage(),
       },

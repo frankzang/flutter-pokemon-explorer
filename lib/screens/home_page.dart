@@ -3,6 +3,8 @@ import 'package:pokemon_explorer/widgets/pokemon_card.dart';
 import 'package:pokemon_explorer/widgets/pokemon_count.dart';
 
 class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _HomePageState();
