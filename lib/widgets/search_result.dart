@@ -43,18 +43,22 @@ class _SearchResultState extends State<SearchResult> {
                             padding: const EdgeInsets.only(right: 10.0),
                             child: Hero(
                               tag: "pokemon_hero${widget._pokemon.id}",
-                              child: SizedBox(
-                                height: 80,
-                                width: 80,
-                                child: CachedNetworkImage(
-                                  fit: BoxFit.cover,
-                                  height: 70,
-                                  imageUrl:
-                                      widget._pokemon.sprites["front_default"],
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                              child: SingleChildScrollView(
+                                physics: NeverScrollableScrollPhysics(),
+                                padding: EdgeInsets.all(8),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: CachedNetworkImage(
+                                    fit: BoxFit.cover,
+                                    height: 70,
+                                    imageUrl: widget
+                                        ._pokemon.sprites["front_default"],
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
