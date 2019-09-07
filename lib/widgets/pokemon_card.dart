@@ -61,6 +61,7 @@ class _PokemonCardState extends State<PokemonCard>
                         Hero(
                             tag: "pokemon_hero${widget._pokemonNumber}",
                             child: SingleChildScrollView(
+                              physics: NeverScrollableScrollPhysics(),
                               padding: EdgeInsets.all(8),
                               child: SizedBox(
                                 height: 80,
