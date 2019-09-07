@@ -37,18 +37,32 @@ class _DashboardState extends State<Dashboard> {
         type: BottomNavigationBarType.shifting,
         items: const [
           BottomNavigationBarItem(
+            activeIcon: Icon(
+              Icons.home,
+              color: Colors.redAccent,
+            ),
             icon: Icon(
               Icons.home,
-              color: Colors.black87,
+              color: Colors.black45,
             ),
-            title: Text('Home'),
+            title: Text(
+              'Home',
+              style: TextStyle(color: Colors.black45),
+            ),
           ),
           BottomNavigationBarItem(
+            activeIcon: Icon(
+              Icons.favorite,
+              color: Colors.redAccent,
+            ),
             icon: Icon(
               Icons.favorite,
-              color: Colors.black87,
+              color: Colors.black45,
             ),
-            title: Text('Favorites'),
+            title: Text(
+              'Favorites',
+              style: TextStyle(color: Colors.black45),
+            ),
           ),
         ],
         currentIndex: _selectedIndex,
